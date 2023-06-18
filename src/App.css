@@ -13,6 +13,7 @@ body {
 
 #root {
   align-items: center;
+
   /* margin: auto; */
 }
 
@@ -52,6 +53,7 @@ body {
   justify-content: flex-start;
   background-color: rgb(225, 243, 255);
   align-items: center;
+
   /* width: 100%; */
   margin: auto;
 }
@@ -84,5 +86,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   /* align-items: center; */
 }
