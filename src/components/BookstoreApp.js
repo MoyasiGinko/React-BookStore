@@ -1,36 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import BookList from './booksList';
 import AddBook from './addBooks';
+import { addBook, removeBook } from '../redux/books/booksSlice';
 
 const Store = () => {
-  const [books, setBooks] = useState([
-    {
-      id: 1,
-      title: 'The Chronicles of Narnia',
-      author: 'C.S. Lewis',
-      category: ['fantasy'],
-    },
-    {
-      id: 1,
-      title: 'The Hunger Games',
-      author: 'Suzume Collins',
-      category: ['thriller'],
-    },
-    {
-      id: 1,
-      title: 'Game of Thrones',
-      author: 'George R.R. Martin',
-      category: ['fantasy'],
-    },
-  ]);
+  const books = useSelector((state) => state.books);
+  const dispatch = useDispatch();
 
   const handleAddBook = (book) => {
-    const newBook = { ...book, id: Date.now() };
-    setBooks([...books, newBook]);
+    dispatch(addBook(book));
   };
 
   const handleDeleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+    dispatch(removeBook(id));
   };
 
   return (
