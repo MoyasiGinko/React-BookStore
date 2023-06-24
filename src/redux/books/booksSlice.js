@@ -1,41 +1,69 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const initialState = [
-  {
-    id: '1',
-    title: 'The Great Gatsby',
-    author: 'John Smith',
-    category: 'Fiction',
-  },
-  {
-    id: '2',
-    title: 'Anna Karenina',
-    author: 'Leo Tolstoy',
-    category: 'Fiction',
-  },
-  {
-    id: '3',
-    title: 'The Selfish Gene',
-    author: 'Richard Dawkins',
-    category: 'Nonfiction',
-  },
-];
+const API_BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi';
+const KEY = 'eWWpOQYFfW4okklL3oVZ';
+const FETCH_BOOKS = 'books/fetchBooks';
+const ADD_BOOKS = 'books/addBook';
+const REMOVE_BOOK = 'books/removeBook';
+
+export const fetchBooks = createAsyncThunk(FETCH_BOOKS, async () => {
+  const res = await axios.get(`${API_BASE_URL}/apps/${KEY}/books`);
+  const booksArray = Object.entries(res.data).map(([id, info]) => ({
+    id,
+    ...info[0],
+  }));
+
+  return booksArray;
+});
+
+export const addBook = createAsyncThunk(ADD_BOOKS, async (bookData) => {
+  const bookId = Date.now();
+
+  const { title, author, category } = bookData;
+
+  await axios.post(`${API_BASE_URL}/apps/${KEY}/books`, {
+    item_id: bookId,
+    title,
+    author,
+    category: category || '',
+  });
+
+  return {
+    item_id: bookId,
+    title,
+    author,
+    category: category || '',
+  };
+});
+
+export const removeBook = createAsyncThunk(REMOVE_BOOK, async (bookId) => {
+  await axios.delete(`${API_BASE_URL}/apps/${KEY}/books/${bookId}`);
+  return bookId;
+});
+
+const initialState = [];
 
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    addBook: (state, action) => {
-      state.push(action.payload);
-    },
-    removeBook: (state, action) => {
-      const index = state.findIndex((book) => book.id === action.payload);
-      if (index !== -1) {
-        state.splice(index, 1);
-      }
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.length = 0;
+        action.payload.forEach((book) => state.push(book));
+      })
+      .addCase(addBook.fulfilled, (state, action) => {
+        state.push(action.payload);
+      })
+      .addCase(removeBook.fulfilled, (state, action) => {
+        const index = state.findIndex((book) => book.id === action.payload);
+        if (index !== -1) {
+          state.splice(index, 1);
+        }
+      });
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
 export default booksSlice.reducer;
