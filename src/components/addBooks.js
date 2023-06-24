@@ -58,9 +58,10 @@ const AddBook = ({ onSubmit }) => {
           onChange={handleCategoryChange}
         >
           <option value="">Categories</option>
-          <option value="category1">Category 1</option>
-          <option value="category2">Category 2</option>
-          <option value="category3">Category 3</option>
+          <option value="Action">Action</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Drama">Drama</option>
+          <option value="Si-Fi">Si-Fi</option>
         </select>
         <button type="submit">Add</button>
       </form>
