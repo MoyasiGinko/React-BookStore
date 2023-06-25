@@ -29,11 +29,12 @@ const AddBook = ({ onSubmit }) => {
 
   return (
     <div className="add-book">
-      <h2>Add New Book</h2>
-      <form onSubmit={handleSubmit}>
+      <span className="add-new-title Text-Style-10">ADD NEW BOOK</span>
+      <form className="form-input" onSubmit={handleSubmit}>
         <label htmlFor="title">
-          Title:
           <input
+            className="input-title"
+            placeholder="Book Title"
             type="text"
             id="title"
             name="title"
@@ -42,8 +43,9 @@ const AddBook = ({ onSubmit }) => {
           />
         </label>
         <label htmlFor="author">
-          Author:
           <input
+            className="input-author"
+            placeholder="Author Name"
             type="text"
             id="author"
             name="author"
@@ -52,6 +54,8 @@ const AddBook = ({ onSubmit }) => {
           />
         </label>
         <select
+          className="input-category"
+          placeholder="Category"
           name="category"
           id="category"
           value={bookData.category}
@@ -63,7 +67,7 @@ const AddBook = ({ onSubmit }) => {
           <option value="Drama">Drama</option>
           <option value="Si-Fi">Si-Fi</option>
         </select>
-        <button type="submit">Add</button>
+        <button className="add-btn" type="submit">ADD BOOK</button>
       </form>
     </div>
   );

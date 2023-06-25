@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Progress from './bookProgress';
 
 const Book = ({
   book: {
@@ -10,22 +11,25 @@ const Book = ({
   const handleDelete = () => onDelete(id);
 
   return (
-    <div className="book-item">
-      <h2>{title}</h2>
-      <p>
-        Author:
-        {author}
-      </p>
-      {category && (
-      <p>
-        Category:
-        {category}
-      </p>
-      )}
-      <button type="button" onClick={handleDelete}>
-        Delete
-      </button>
-    </div>
+    <>
+      <div className="book-item">
+        <div>
+          {category && <p className="category-head">{category}</p>}
+          <h2 className="book-title">{title}</h2>
+          <p className="author-name">{author}</p>
+          <div className="btn-wrapper">
+            <button className="comments-btn" type="button">Comments</button>
+            <button className="remove-btn" type="button" onClick={handleDelete}>
+              Remove
+            </button>
+            <button className="edit-btn" type="button">Edit</button>
+          </div>
+        </div>
+        <div>
+          <Progress />
+        </div>
+      </div>
+    </>
   );
 };
 
