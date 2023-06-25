@@ -1,13 +1,10 @@
 .add-book {
   align-items: center;
-
-  /* background-color: rgb(255, 255, 255); */
   padding: 1rem 0 0 0;
   margin: 1rem 0 0 0;
 }
 
 .add-new-title {
-  width: 10.875rem;
   height: 1.5rem;
   margin: 1.813rem 0.813rem 1.188rem 6.25rem;
   font-family: Montserrat, sans-serif;
@@ -66,4 +63,5 @@
   border: solid 1px #e8e8e8;
   background-color: #0290ff;
   cursor: pointer;
+  color: #fff;
 }

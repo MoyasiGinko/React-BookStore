@@ -15,6 +15,17 @@
   align-self: flex-end;
 }
 
+.chapter-section {
+  width: fit-content;
+}
+
+.chapter-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
 .progress-circle {
   width: 4.5rem;
   height: 4.5rem;
@@ -29,7 +40,7 @@
 }
 
 .value {
-  height: 2.438rem;
+  height: 3.438rem;
   margin: 0.063rem 0 0 0;
   font-family: Montserrat, sans-serif;
   font-size: 2rem;
@@ -42,7 +53,7 @@
 }
 
 .completed {
-  width: 5rem;
+  width: 6rem;
   height: 1.125rem;
   margin: 0.438rem 0 0.75rem 0;
   opacity: 0.5;
@@ -65,7 +76,7 @@
 }
 
 .current-chapter {
-  width: 7.875rem;
+  width: 8.875rem;
   height: 1.125rem;
   margin: 0.063rem 3.625rem 0 0;
   opacity: 0.5;
@@ -80,7 +91,7 @@
 }
 
 .chapter-number {
-  width: 4.688rem;
+  width: 5.688rem;
   height: 1.313rem;
   margin: 0.438rem 6.813rem 0.25rem 0;
   font-family: RobotoSlab, sans-serif;
@@ -94,7 +105,7 @@
 }
 
 .update-progress {
-  width: 11.5rem;
+  width: 12.5rem;
   height: 2.063rem;
   padding: 0.438rem 1.188rem 0.5rem 1.375rem;
   border-radius: 3px;
@@ -108,7 +119,7 @@
   line-height: normal;
   letter-spacing: 0.5px;
   text-align: center;
-  color: #fff;
+  color: #ffffffa1;
   border: none;
   outline: none;
 }

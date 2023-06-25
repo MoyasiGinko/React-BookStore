@@ -17,7 +17,7 @@ const Book = ({
           {category && <p className="category-head">{category}</p>}
           <h2 className="book-title">{title}</h2>
           <p className="author-name">{author}</p>
-          <div>
+          <div className="btn-wrapper">
             <button className="comments-btn" type="button">Comments</button>
             <button className="remove-btn" type="button" onClick={handleDelete}>
               Remove
